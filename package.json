@@ -1,0 +1,46 @@
+{
+  "name": "runfor",
+  "version": "0.0.0",
+  "description": "Run a performant function for a period of time",
+  "homepage": "https://github.com/brunnolou/runfor#readme",
+  "main": "lib/index.js",
+  "scripts": {
+    "dev": "neutrino start",
+    "build:demo": "neutrino build",
+    "build": "babel src | uglifyjs -b -o lib/index.js && uglifyjs lib/index.js -m -c -o lib/index.min.js",
+    "test": "neutrino test"
+  },
+  "keywords": [
+    "animation",
+    "duration",
+    "raf",
+    "Request Animation Frame",
+    "requestAnimationFrame"
+  ],
+  "author": "Bruno Lourenco",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-eslint": "^7.2.3",
+    "babel-preset-env": "^1.6.0",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb-base": "^11.2.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jest": "^20.0.3",
+    "neutrino": "^6.*",
+    "neutrino-preset-jest": "^6.*",
+    "neutrino-preset-node": "^6.*",
+    "neutrino-preset-web": "^6.*",
+    "uglifyjs": "^2.4.11"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brunnolou/runfor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/brunnolou/runfor/issues"
+  },
+  "dependencies": {
+    "micro-raf": "^1.0.0"
+  }
+}
