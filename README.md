@@ -1,4 +1,4 @@
-# runFor(fn, ms)
+# `runFor(fn, ms)`
 
 [![npm version](https://badge.fury.io/js/runfor.svg?v0)](https://badge.fury.io/js/runfor)
 ![](https://img.shields.io/github/size/brunnolou/runfor/lib/index.min.js.svg)
@@ -15,7 +15,7 @@ or
 
 ## Usage
 ```js
-const run = runFor(progressFn, duration);
+runFor(progressFn, msDuration);
 ```
 
 ## Example
@@ -23,17 +23,36 @@ const run = runFor(progressFn, duration);
 import runFor from 'runfor';
 
 function moveX(progress) {
+	// Move right 200px
   div.style.transform = `translateX(${progress * 200}px`;
 }
 
 // Run moveX for 1sec with a progress between 0 and 1.
-const runner = runFor(p => moveX(p), 1000);
+runFor(p => moveX(p), 1000);
 
 ```
 
 Check the `examples/` folder to see full examples.
 
-Or check out the [DEMO](https://brunnolou.github.io/runfor/) page
+## API
+
+Optionally you can stop or start the animation with this functions:
+```js
+const runner = runFor(fn, 1000);
+
+runner.toggle()
+runner.stop()
+runner.start()
+```
+
+### `.stop()`
+Stops the animation.
+### `.start()`
+Starts the animation keeping the previous progress.
+### `.toggle()`
+Toggle start / stop.
+### `.restart()`
+Restart animation from the beginning
 
 
 ## Development

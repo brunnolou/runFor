@@ -17,22 +17,22 @@ export default function runFor(progressFn, duration) {
   let dTime = 0;
   let start = null;
   let stopped = false;
-  let timestamp = 0;
   let onDone = () => {};
+  let timer;
 
   const step = (time) => {
     if (!start) start = time;
 
-    timestamp = time;
-
     dTime = time - start;
 
-    if (stopped) return;
+    if (stopped) return timer;
 
     if (dTime >= duration) {
       progressFn(1);
       onDone();
-      return;
+      stopRaf(timer);
+
+      return timer;
     }
 
     const progress = dTime / duration;
@@ -42,27 +42,34 @@ export default function runFor(progressFn, duration) {
     return raf(step);
   };
 
-  const timer = raf(step);
+  timer = raf(step);
 
   return {
     stop() {
       stopped = true;
-			stopRaf(timer);
+      stopRaf(timer);
+
+      return this;
     },
-    start() {
-      start = now() - dTime;
+    start(restart) {
+      start = now() - (restart ? 0 : dTime);
       stopped = false;
       raf(step);
-		},
-		toggle(){
-			if (stopped) {
-				this.start();
 
-				return;
-			}
+      return this;
+    },
+    toggle() {
+      if (stopped) {
+        this.start();
 
-			this.stop();
-		},
+        return this;
+      }
+
+      return this.stop();
+    },
+    restart() {
+      return this.start(true);
+    },
     onDone(cb) {
       onDone = cb;
     },
