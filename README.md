@@ -1,9 +1,10 @@
-# runFor
+# runFor(fn, ms)
 
-### Run a performant function for a period of time
-[![npm version](https://badge.fury.io/js/runfor.svg?v2)](https://badge.fury.io/js/runfor)
+[![npm version](https://badge.fury.io/js/runfor.svg?v0)](https://badge.fury.io/js/runfor)
 ![](https://img.shields.io/github/size/brunnolou/runfor/lib/index.min.js.svg)
 
+### Run a performant function for a period of time
+Run `requestAnimationFrame` for the specified duration.
 
 ## Install
 `npm install --save runfor`
